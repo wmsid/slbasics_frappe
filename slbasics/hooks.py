@@ -11,6 +11,11 @@ app_license = "mit"
 app_include_js = "/assets/slbasics/js/global_shortcuts.js"
 # required_apps = []
 
+# include js in doctype list views
+doctype_list_js = {
+    "Item": "public/js/item_list.js"
+}
+
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
 # 	{
