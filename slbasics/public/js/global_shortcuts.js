@@ -97,6 +97,13 @@ frappe.slbasics.open_uom_calculator = function () {
 
 	dialog.show();
 
+	// Frappe disables Bootstrap's native ESC handling on dialogs — wire it up manually.
+	dialog.$wrapper.on("keydown", function (e) {
+		if (e.key === "Escape") {
+			dialog.hide();
+		}
+	});
+
 	// If saved UOMs were restored, auto-fetch the conversion factor immediately.
 	if (saved.source_uom && saved.target_uom) {
 		refresh_conversion();
