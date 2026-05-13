@@ -6,6 +6,24 @@ frappe.slbasics.open_uom_calculator = function () {
 	let conversion_cache = {};
 	let current_factor = null;
 
+	const LS_KEY = "slbasics_uom_calculator";
+
+	function load_saved_uoms() {
+		try {
+			return JSON.parse(localStorage.getItem(LS_KEY)) || {};
+		} catch (e) {
+			return {};
+		}
+	}
+
+	function save_uoms(source_uom, target_uom) {
+		try {
+			localStorage.setItem(LS_KEY, JSON.stringify({ source_uom, target_uom }));
+		} catch (e) { /* ignore */ }
+	}
+
+	const saved = load_saved_uoms();
+
 	const dialog = new frappe.ui.Dialog({
 		title: __("UOM Calculator"),
 		fields: [
@@ -15,9 +33,14 @@ frappe.slbasics.open_uom_calculator = function () {
 				label: __("Source UOM"),
 				options: "UOM",
 				reqd: 1,
+				default: saved.source_uom || "",
 				onchange: function () {
+					save_uoms(dialog.get_value("source_uom"), dialog.get_value("target_uom"));
 					refresh_conversion();
 				},
+			},
+			{
+				fieldtype: "Column Break",
 			},
 			{
 				fieldtype: "Link",
@@ -25,7 +48,9 @@ frappe.slbasics.open_uom_calculator = function () {
 				label: __("Target UOM"),
 				options: "UOM",
 				reqd: 1,
+				default: saved.target_uom || "",
 				onchange: function () {
+					save_uoms(dialog.get_value("source_uom"), dialog.get_value("target_uom"));
 					refresh_conversion();
 				},
 			},
@@ -71,6 +96,11 @@ frappe.slbasics.open_uom_calculator = function () {
 	});
 
 	dialog.show();
+
+	// If saved UOMs were restored, auto-fetch the conversion factor immediately.
+	if (saved.source_uom && saved.target_uom) {
+		refresh_conversion();
+	}
 
 	// Attach native input listeners after dialog DOM is ready.
 	// Using $input.val() is synchronous and won't trigger Frappe's onchange,
