@@ -1,5 +1,5 @@
 app_name = "slbasics"
-app_title = "SLBascics"
+app_title = "SLBasics"
 app_publisher = "Siddharth Jain"
 app_description = "Basic Utility Functionalities from SkylineBiz"
 app_email = "info@skylinebiz.in"
@@ -16,8 +16,8 @@ app_include_js = "/assets/slbasics/js/global_shortcuts.js"
 # 	{
 # 		"name": "slbasics",
 # 		"logo": "/assets/slbasics/logo.png",
-# 		"title": "SLBascics",
-# 		"route": "/slbasics",
+# 		"title": "SLBasics",
+# 		"route": "/SLBasics",
 # 		"has_permission": "slbasics.api.permission.has_app_permission"
 # 	}
 # ]

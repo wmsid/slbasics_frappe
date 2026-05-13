@@ -1,7 +1,7 @@
 
 frappe.ui.keys.add_shortcut({
-    shortcut: "ctrl+q",
-    action: () => {
+    shortcut: "ctrl+0",
+    action: (e) => {
         $("#navbar-modal-search").click();
         e.preventDefault();
         return false;

@@ -1,4 +1,4 @@
-### SLBascics
+### SLBasics
 
 Basic Utility Functionalities from SkylineBiz
 
