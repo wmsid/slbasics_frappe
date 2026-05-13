@@ -1,5 +1,5 @@
 app_name = "slbasics"
-app_title = "SLBascics"
+app_title = "SLBasics"
 app_publisher = "Siddharth Jain"
 app_description = "Basic Utility Functionalities from SkylineBiz"
 app_email = "info@skylinebiz.in"
@@ -11,13 +11,18 @@ app_license = "mit"
 app_include_js = "/assets/slbasics/js/global_shortcuts.js"
 # required_apps = []
 
+# include js in doctype list views
+doctype_list_js = {
+    "Item": "public/js/item_list.js"
+}
+
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
 # 	{
 # 		"name": "slbasics",
 # 		"logo": "/assets/slbasics/logo.png",
-# 		"title": "SLBascics",
-# 		"route": "/slbasics",
+# 		"title": "SLBasics",
+# 		"route": "/SLBasics",
 # 		"has_permission": "slbasics.api.permission.has_app_permission"
 # 	}
 # ]
